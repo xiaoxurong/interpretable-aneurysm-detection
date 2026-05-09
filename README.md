@@ -21,8 +21,8 @@ geometric concepts, enabling transparent, clinician-auditable diagnosis.
 ## Installation
 
 ```bash
-git clone https://github.com/<xiaoxurong>/CS767POINTCBM.git
-cd CS767POINTCBM
+git clone https://github.com/<xiaoxurong>/POINTCBM-767.git
+cd POINTCBM-767
 pip install -r requirements.txt
 ```
 
@@ -93,7 +93,7 @@ Requires the OpenShape checkpoint to be available under `OpenShape/`.
 See `OpenShape/README.md` for download instructions.
 
 ## Project Structure
-CS767POINTCBM/
+POINTCBM-767/
 ├── backbones/              # PointNet, PointNet++, DGCNN implementations
 ├── model/                  # dataset.py, loss.py, model.py (PC-CBM)
 ├── configs/                # YAML configuration files
