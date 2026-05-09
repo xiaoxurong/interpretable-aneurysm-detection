@@ -28,8 +28,8 @@ pip install -r requirements.txt
 
 ## Data Setup
 
-1. Download the IntrA dataset from https://github.com/intra3d2019/IntrA
-   and place it under `data/IntrA/`.
+1. Download the IntrA dataset from https://github.com/intra3d2019/IntrA and preprocess the mesh data.
+   Then place the processed data under `data/processed_IntrA_6d/points/`.
 2. Generate the 5-fold cross-validation splits and place CSV files under
    `data/splits/fold_{1..5}/`.
 
@@ -43,7 +43,7 @@ data/
 │   ├── fold_1/
 │   │   ├── train_labels.csv
 │   │   └── test_labels.csv
-│   └── ...
+│   └── points
 └── metadata/
     ├── concepts.json
     └── concept_embeds.pt
