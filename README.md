@@ -37,9 +37,9 @@ The expected directory structure is:
 
 ```
 data/
-├── IntrA/
-│   └── *.obj / *.pts
-├── splits/
+├── points/
+│   └── *.npy
+├── processed_IntrA_6d/
 │   ├── fold_1/
 │   │   ├── train_labels.csv
 │   │   └── test_labels.csv
