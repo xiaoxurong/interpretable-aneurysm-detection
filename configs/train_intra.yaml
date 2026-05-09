@@ -1,0 +1,33 @@
+experiment:
+  name: "IntrA_CCAM_PointNet_6d_input_alpha0.6_no_contrastive_loss"
+  task: "classification" # or "segmentation"
+  save_dir: "checkpoints/"
+
+data:
+  dataset_name: "IntrA"
+  data_dir: "data/processed_IntrA_6d/points/"
+  csv_dir: "data/processed_IntrA_6d/"
+  concept_embeddings: "data/metadata/concept_embeds.pt"
+
+model:
+  backbone: "OfficialPointNet" # or "VanillaPointNet"
+  d_f: 128
+  in_channel: 6
+  d_hidden: 256
+  num_classes: 2
+  k: 20
+
+training:
+  num_epochs: 100
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+loss_weights:
+  alpha: 0.5
+  gamma: 2.0
+  lambda_align: 0   
+  lambda_sparse: 0.01
+  lambda_ortho: 0.01
+  lambda_supcon: 0.01
+  temperature: 0.1
