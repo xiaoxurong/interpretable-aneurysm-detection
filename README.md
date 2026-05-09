@@ -21,7 +21,7 @@ geometric concepts, enabling transparent, clinician-auditable diagnosis.
 ## Installation
 
 ```bash
-git clone https://github.com/<xiaoxurong>/POINTCBM-767.git
+git clone https://github.com/xiaoxurong/POINTCBM-767.git
 cd POINTCBM-767
 pip install -r requirements.txt
 ```
@@ -35,6 +35,7 @@ pip install -r requirements.txt
 
 The expected directory structure is:
 
+```
 data/
 ├── IntrA/
 │   └── *.obj / *.pts
@@ -44,8 +45,9 @@ data/
 │   │   └── test_labels.csv
 │   └── ...
 └── metadata/
-├── concepts.json
-└── concept_embeds.pt
+    ├── concepts.json
+    └── concept_embeds.pt
+```
 
 ## Generating Concept Embeddings
 
@@ -93,6 +95,7 @@ Requires the OpenShape checkpoint to be available under `OpenShape/`.
 See `OpenShape/README.md` for download instructions.
 
 ## Project Structure
+```
 POINTCBM-767/
 ├── backbones/              # PointNet, PointNet++, DGCNN implementations
 ├── model/                  # dataset.py, loss.py, model.py (PC-CBM)
@@ -106,3 +109,4 @@ POINTCBM-767/
 │   ├── logit_lens.py
 │   └── concept_embeddings.py
 └── requirements.txt
+```
