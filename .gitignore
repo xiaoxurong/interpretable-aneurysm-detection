@@ -22,3 +22,4 @@ visualizations/
 *.onnx
 !results/lite_cbm_clip/*.pth
 results/*/features.csv
+results/*/eval_oof_predictions.csv

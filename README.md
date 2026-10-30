@@ -104,8 +104,8 @@ schedule (`configs/cpu_ablation.yaml`). The whole suite reruns in about an hour 
 <p align="center"><img src="docs/figures/concepts.png" width="95%"></p>
 
 The head is linear, so dropping a concept is exact: replace its score with a
-constant and recompute the prediction. **Left:** concept scores on held-out data,
-by class. **Right:** how much pooled AUROC falls when each concept is ablated.
+constant and recompute the prediction. **Left:** how often each concept fires on
+held-out segments, by class. **Right:** how much pooled AUROC falls when each concept is ablated.
 
 * The concept whose text describes an aneurysm, *"a small balloon connected to a
   tube by a narrow stem"*, fires on **21% of aneurysm segments vs. 7% of vessel
@@ -122,8 +122,8 @@ by class. **Right:** how much pooled AUROC falls when each concept is ablated.
 <p align="center"><img src="docs/figures/attention_gallery.png" width="95%"></p>
 <p align="center"><img src="docs/figures/attention_all_concepts.png" width="95%"></p>
 
-**Honest reading:** the "small balloon" concept is silent on healthy vessels and
-active on aneurysm segments. But on segments like `AN9-23` the strongest attention
+**Reading the maps:** the "small balloon" concept is silent on the healthy vessel and
+active on the aneurysm segments. But on segments like `AN9-23` the strongest attention
 falls on the parent vessel rather than the sac itself. At this model size the
 concept works as a reliable *segment-level* detector, **not yet a localiser**.
 Point-level supervision (IntrA ships aneurysm segmentation masks) or the OpenShape
