@@ -3,7 +3,7 @@
 install:          ## editable install with dev + ONNX extras
 	pip install -e ".[dev,deploy]"
 
-test:             ## unit tests (~30 s on CPU)
+test:             ## unit tests (a few seconds on CPU)
 	pytest
 
 lint:

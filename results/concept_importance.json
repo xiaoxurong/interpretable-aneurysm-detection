@@ -1,0 +1,29 @@
+{
+  "base_auroc": 0.7595590456055572,
+  "concepts": {
+    "a long thin smooth cylindrical tube": {
+      "auroc_drop": 0.007875950687789901,
+      "aneurysm_weight": -0.17843666672706604
+    },
+    "a Y-shaped pipe where one tube splits into two": {
+      "auroc_drop": 0.024462535350484593,
+      "aneurysm_weight": -0.11410491168498993
+    },
+    "a wavy curved bent tube like a snake": {
+      "auroc_drop": -0.003920814914472492,
+      "aneurysm_weight": 0.006881094072014093
+    },
+    "a round balloon attached to the side of a thin pipe": {
+      "auroc_drop": -0.0017462452980423482,
+      "aneurysm_weight": 0.019081467762589455
+    },
+    "a small balloon connected to a tube by a narrow stem": {
+      "auroc_drop": 0.009103264600093364,
+      "aneurysm_weight": 0.06670478731393814
+    },
+    "a rough bumpy uneven surface on a smooth tube": {
+      "auroc_drop": 0.012212734411465864,
+      "aneurysm_weight": -0.12215210497379303
+    }
+  }
+}

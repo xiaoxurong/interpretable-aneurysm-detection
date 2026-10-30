@@ -1,0 +1,256 @@
+[lite_cbm_clip] PointNetLite/cbm | 0.21M params | 6 concepts | device=cpu
+  fold 1 | ep   1 | loss 0.2080 | val auroc 0.709 auprc 0.170  *
+  fold 1 | ep   2 | loss 0.1914 | val auroc 0.739 auprc 0.242  *
+  fold 1 | ep   3 | loss 0.1630 | val auroc 0.754 auprc 0.262  *
+  fold 1 | ep  10 | loss 0.1212 | val auroc 0.727 auprc 0.161
+  fold 1 | ep  16 | loss 0.1194 | val auroc 0.817 auprc 0.228  *
+  fold 1 | ep  20 | loss 0.1168 | val auroc 0.704 auprc 0.150
+  fold 1 | ep  30 | loss 0.1099 | val auroc 0.790 auprc 0.208
+  fold 1 | early stop at epoch 30 (best epoch 16)
+fold 1 TEST | auroc 0.772 auprc 0.230 bal_acc 0.737 acc0 0.567 acc1 0.907 f1 0.344 ece 0.329 | thr 0.463
+  fold 2 | ep   1 | loss 0.1859 | val auroc 0.727 auprc 0.362  *
+  fold 2 | ep   3 | loss 0.1427 | val auroc 0.777 auprc 0.336  *
+  fold 2 | ep  10 | loss 0.1223 | val auroc 0.537 auprc 0.199
+  fold 2 | ep  20 | loss 0.1219 | val auroc 0.500 auprc 0.139
+  fold 2 | ep  30 | loss 0.1214 | val auroc 0.500 auprc 0.139
+  fold 2 | early stop at epoch 30 (best epoch 3)
+fold 2 TEST | auroc 0.658 auprc 0.220 bal_acc 0.647 acc0 0.628 acc1 0.667 f1 0.309 ece 0.327 | thr 0.447
+  fold 3 | ep   1 | loss 0.2102 | val auroc 0.638 auprc 0.248  *
+  fold 3 | ep   2 | loss 0.1814 | val auroc 0.662 auprc 0.208  *
+  fold 3 | ep   3 | loss 0.1638 | val auroc 0.684 auprc 0.215  *
+  fold 3 | ep  10 | loss 0.1217 | val auroc 0.621 auprc 0.163
+  fold 3 | ep  16 | loss 0.1195 | val auroc 0.695 auprc 0.199  *
+  fold 3 | ep  20 | loss 0.1172 | val auroc 0.638 auprc 0.179
+  fold 3 | ep  24 | loss 0.1179 | val auroc 0.718 auprc 0.235  *
+  fold 3 | ep  25 | loss 0.1163 | val auroc 0.724 auprc 0.227  *
+  fold 3 | ep  27 | loss 0.1171 | val auroc 0.772 auprc 0.259  *
+  fold 3 | ep  30 | loss 0.1102 | val auroc 0.703 auprc 0.208
+  fold 3 | ep  34 | loss 0.1105 | val auroc 0.787 auprc 0.300  *
+  fold 3 | ep  37 | loss 0.1115 | val auroc 0.818 auprc 0.464  *
+  fold 3 | ep  40 | loss 0.1084 | val auroc 0.796 auprc 0.307
+fold 3 TEST | auroc 0.776 auprc 0.240 bal_acc 0.724 acc0 0.710 acc1 0.737 f1 0.344 ece 0.328 | thr 0.481
+  fold 4 | ep   1 | loss 0.2313 | val auroc 0.706 auprc 0.229  *
+  fold 4 | ep   4 | loss 0.1573 | val auroc 0.758 auprc 0.310  *
+  fold 4 | ep   6 | loss 0.1390 | val auroc 0.764 auprc 0.305  *
+  fold 4 | ep   7 | loss 0.1259 | val auroc 0.786 auprc 0.387  *
+  fold 4 | ep  10 | loss 0.1223 | val auroc 0.628 auprc 0.279
+  fold 4 | ep  20 | loss 0.1176 | val auroc 0.752 auprc 0.354
+  fold 4 | ep  21 | loss 0.1188 | val auroc 0.787 auprc 0.360  *
+  fold 4 | ep  22 | loss 0.1141 | val auroc 0.814 auprc 0.384  *
+  fold 4 | ep  24 | loss 0.1158 | val auroc 0.821 auprc 0.379  *
+  fold 4 | ep  27 | loss 0.1139 | val auroc 0.827 auprc 0.383  *
+  fold 4 | ep  29 | loss 0.1159 | val auroc 0.832 auprc 0.463  *
+  fold 4 | ep  30 | loss 0.1125 | val auroc 0.834 auprc 0.431  *
+  fold 4 | ep  38 | loss 0.1093 | val auroc 0.837 auprc 0.463  *
+  fold 4 | ep  40 | loss 0.1092 | val auroc 0.834 auprc 0.469
+fold 4 TEST | auroc 0.840 auprc 0.410 bal_acc 0.775 acc0 0.716 acc1 0.833 f1 0.426 ece 0.327 | thr 0.496
+  fold 5 | ep   1 | loss 0.2059 | val auroc 0.738 auprc 0.246  *
+  fold 5 | ep  10 | loss 0.1223 | val auroc 0.635 auprc 0.150
+  fold 5 | ep  20 | loss 0.1170 | val auroc 0.703 auprc 0.179
+  fold 5 | ep  24 | loss 0.1122 | val auroc 0.757 auprc 0.210  *
+  fold 5 | ep  25 | loss 0.1126 | val auroc 0.775 auprc 0.230  *
+  fold 5 | ep  30 | loss 0.1139 | val auroc 0.768 auprc 0.218
+  fold 5 | ep  31 | loss 0.1120 | val auroc 0.805 auprc 0.263  *
+  fold 5 | ep  40 | loss 0.1094 | val auroc 0.779 auprc 0.235
+fold 5 TEST | auroc 0.757 auprc 0.201 bal_acc 0.682 acc0 0.680 acc1 0.684 f1 0.306 ece 0.334 | thr 0.494
+
+mean ± std over folds [1, 2, 3, 4, 5]
+  auroc    0.761 ± 0.059
+  auprc    0.260 ± 0.076
+  bal_acc  0.713 ± 0.044
+  acc0     0.660 ± 0.056
+  acc1     0.766 ± 0.091
+  f1       0.346 ± 0.043
+  ece      0.329 ± 0.002
+
+artifacts -> results/lite_cbm_clip
+[lite_blackbox] PointNetLite/blackbox | 0.13M params | 6 concepts | device=cpu
+  fold 1 | ep   1 | loss 0.0824 | val auroc 0.763 auprc 0.215  *
+  fold 1 | ep   4 | loss 0.0478 | val auroc 0.772 auprc 0.244  *
+  fold 1 | ep   5 | loss 0.0423 | val auroc 0.802 auprc 0.254  *
+  fold 1 | ep   6 | loss 0.0391 | val auroc 0.809 auprc 0.332  *
+  fold 1 | ep  10 | loss 0.0283 | val auroc 0.747 auprc 0.225
+  fold 1 | ep  17 | loss 0.0192 | val auroc 0.812 auprc 0.331  *
+  fold 1 | ep  20 | loss 0.0137 | val auroc 0.777 auprc 0.245
+  fold 1 | ep  21 | loss 0.0155 | val auroc 0.812 auprc 0.283  *
+  fold 1 | ep  22 | loss 0.0132 | val auroc 0.825 auprc 0.282  *
+  fold 1 | ep  26 | loss 0.0117 | val auroc 0.828 auprc 0.400  *
+  fold 1 | ep  30 | loss 0.0087 | val auroc 0.800 auprc 0.307
+  fold 1 | early stop at epoch 36 (best epoch 26)
+fold 1 TEST | auroc 0.847 auprc 0.490 bal_acc 0.789 acc0 0.672 acc1 0.907 f1 0.406 ece 0.235 | thr 0.390
+  fold 2 | ep   1 | loss 0.0741 | val auroc 0.790 auprc 0.455  *
+  fold 2 | ep   2 | loss 0.0591 | val auroc 0.800 auprc 0.500  *
+  fold 2 | ep   4 | loss 0.0437 | val auroc 0.805 auprc 0.489  *
+  fold 2 | ep   5 | loss 0.0362 | val auroc 0.862 auprc 0.549  *
+  fold 2 | ep   6 | loss 0.0390 | val auroc 0.874 auprc 0.644  *
+  fold 2 | ep  10 | loss 0.0249 | val auroc 0.858 auprc 0.628
+  fold 2 | ep  20 | loss 0.0201 | val auroc 0.831 auprc 0.589
+  fold 2 | ep  30 | loss 0.0103 | val auroc 0.846 auprc 0.584
+  fold 2 | early stop at epoch 30 (best epoch 6)
+fold 2 TEST | auroc 0.743 auprc 0.367 bal_acc 0.696 acc0 0.871 acc1 0.521 f1 0.427 ece 0.248 | thr 0.578
+  fold 3 | ep   1 | loss 0.0842 | val auroc 0.756 auprc 0.378  *
+  fold 3 | ep   2 | loss 0.0562 | val auroc 0.797 auprc 0.480  *
+  fold 3 | ep   3 | loss 0.0606 | val auroc 0.800 auprc 0.447  *
+  fold 3 | ep   5 | loss 0.0442 | val auroc 0.813 auprc 0.527  *
+  fold 3 | ep   7 | loss 0.0368 | val auroc 0.823 auprc 0.578  *
+  fold 3 | ep   8 | loss 0.0335 | val auroc 0.844 auprc 0.571  *
+  fold 3 | ep  10 | loss 0.0354 | val auroc 0.815 auprc 0.497
+  fold 3 | ep  12 | loss 0.0313 | val auroc 0.858 auprc 0.562  *
+  fold 3 | ep  20 | loss 0.0194 | val auroc 0.855 auprc 0.584
+  fold 3 | ep  22 | loss 0.0184 | val auroc 0.858 auprc 0.639  *
+  fold 3 | ep  30 | loss 0.0088 | val auroc 0.854 auprc 0.628
+  fold 3 | early stop at epoch 32 (best epoch 22)
+fold 3 TEST | auroc 0.807 auprc 0.337 bal_acc 0.694 acc0 0.913 acc1 0.474 f1 0.424 ece 0.072 | thr 0.483
+  fold 4 | ep   1 | loss 0.0823 | val auroc 0.789 auprc 0.311  *
+  fold 4 | ep   2 | loss 0.0578 | val auroc 0.823 auprc 0.421  *
+  fold 4 | ep   3 | loss 0.0541 | val auroc 0.834 auprc 0.482  *
+  fold 4 | ep   7 | loss 0.0406 | val auroc 0.852 auprc 0.491  *
+  fold 4 | ep  10 | loss 0.0265 | val auroc 0.790 auprc 0.371
+  fold 4 | ep  11 | loss 0.0296 | val auroc 0.860 auprc 0.511  *
+  fold 4 | ep  20 | loss 0.0182 | val auroc 0.831 auprc 0.417
+  fold 4 | ep  30 | loss 0.0064 | val auroc 0.843 auprc 0.455
+  fold 4 | early stop at epoch 30 (best epoch 11)
+fold 4 TEST | auroc 0.850 auprc 0.455 bal_acc 0.758 acc0 0.787 acc1 0.729 f1 0.443 ece 0.205 | thr 0.483
+  fold 5 | ep   1 | loss 0.0801 | val auroc 0.753 auprc 0.364  *
+  fold 5 | ep   2 | loss 0.0571 | val auroc 0.857 auprc 0.536  *
+  fold 5 | ep   6 | loss 0.0400 | val auroc 0.860 auprc 0.491  *
+  fold 5 | ep   9 | loss 0.0351 | val auroc 0.863 auprc 0.464  *
+  fold 5 | ep  10 | loss 0.0396 | val auroc 0.841 auprc 0.415
+  fold 5 | ep  16 | loss 0.0215 | val auroc 0.867 auprc 0.412  *
+  fold 5 | ep  18 | loss 0.0230 | val auroc 0.873 auprc 0.442  *
+  fold 5 | ep  20 | loss 0.0176 | val auroc 0.835 auprc 0.429
+  fold 5 | ep  30 | loss 0.0086 | val auroc 0.849 auprc 0.412
+  fold 5 | early stop at epoch 30 (best epoch 18)
+fold 5 TEST | auroc 0.805 auprc 0.371 bal_acc 0.743 acc0 0.644 acc1 0.842 f1 0.340 ece 0.082 | thr 0.136
+
+mean ± std over folds [1, 2, 3, 4, 5]
+  auroc    0.811 ± 0.039
+  auprc    0.404 ± 0.058
+  bal_acc  0.736 ± 0.037
+  acc0     0.777 ± 0.106
+  acc1     0.695 ± 0.171
+  f1       0.408 ± 0.036
+  ece      0.168 ± 0.076
+
+artifacts -> results/lite_blackbox
+[lite_cbm_random] PointNetLite/cbm | 0.21M params | 6 concepts | device=cpu
+  fold 1 | ep   1 | loss 0.2099 | val auroc 0.616 auprc 0.166  *
+  fold 1 | ep   2 | loss 0.1862 | val auroc 0.782 auprc 0.284  *
+  fold 1 | ep   9 | loss 0.1247 | val auroc 0.798 auprc 0.272  *
+  fold 1 | ep  10 | loss 0.1190 | val auroc 0.663 auprc 0.130
+  fold 1 | ep  20 | loss 0.1165 | val auroc 0.668 auprc 0.143
+  fold 1 | ep  30 | loss 0.1096 | val auroc 0.718 auprc 0.167
+  fold 1 | early stop at epoch 30 (best epoch 9)
+fold 1 TEST | auroc 0.703 auprc 0.210 bal_acc 0.621 acc0 0.824 acc1 0.419 f1 0.300 ece 0.394 | thr 0.534
+  fold 2 | ep   1 | loss 0.1836 | val auroc 0.714 auprc 0.250  *
+  fold 2 | ep   2 | loss 0.1597 | val auroc 0.755 auprc 0.307  *
+  fold 2 | ep   3 | loss 0.1482 | val auroc 0.795 auprc 0.402  *
+  fold 2 | ep  10 | loss 0.1312 | val auroc 0.750 auprc 0.356
+  fold 2 | ep  20 | loss 0.1173 | val auroc 0.761 auprc 0.414
+  fold 2 | ep  30 | loss 0.1100 | val auroc 0.725 auprc 0.347
+  fold 2 | early stop at epoch 30 (best epoch 3)
+fold 2 TEST | auroc 0.750 auprc 0.320 bal_acc 0.659 acc0 0.839 acc1 0.479 f1 0.365 ece 0.349 | thr 0.573
+  fold 3 | ep   1 | loss 0.2082 | val auroc 0.674 auprc 0.264  *
+  fold 3 | ep   2 | loss 0.1821 | val auroc 0.744 auprc 0.351  *
+  fold 3 | ep   3 | loss 0.1662 | val auroc 0.757 auprc 0.409  *
+  fold 3 | ep  10 | loss 0.1226 | val auroc 0.627 auprc 0.176
+  fold 3 | ep  20 | loss 0.1184 | val auroc 0.637 auprc 0.174
+  fold 3 | ep  30 | loss 0.1124 | val auroc 0.711 auprc 0.218
+  fold 3 | early stop at epoch 30 (best epoch 3)
+fold 3 TEST | auroc 0.761 auprc 0.286 bal_acc 0.655 acc0 0.863 acc1 0.447 f1 0.337 ece 0.309 | thr 0.590
+  fold 4 | ep   1 | loss 0.2275 | val auroc 0.782 auprc 0.328  *
+  fold 4 | ep   9 | loss 0.1266 | val auroc 0.798 auprc 0.455  *
+  fold 4 | ep  10 | loss 0.1223 | val auroc 0.743 auprc 0.295
+  fold 4 | ep  20 | loss 0.1178 | val auroc 0.771 auprc 0.396
+  fold 4 | ep  30 | loss 0.1152 | val auroc 0.744 auprc 0.249
+  fold 4 | early stop at epoch 30 (best epoch 9)
+fold 4 TEST | auroc 0.763 auprc 0.284 bal_acc 0.699 acc0 0.648 acc1 0.750 f1 0.346 ece 0.349 | thr 0.469
+  fold 5 | ep   1 | loss 0.2065 | val auroc 0.684 auprc 0.227  *
+  fold 5 | ep   2 | loss 0.1730 | val auroc 0.771 auprc 0.317  *
+  fold 5 | ep   3 | loss 0.1598 | val auroc 0.774 auprc 0.257  *
+  fold 5 | ep  10 | loss 0.1211 | val auroc 0.662 auprc 0.157
+  fold 5 | ep  17 | loss 0.1121 | val auroc 0.786 auprc 0.229  *
+  fold 5 | ep  18 | loss 0.1148 | val auroc 0.800 auprc 0.413  *
+  fold 5 | ep  20 | loss 0.1118 | val auroc 0.725 auprc 0.187
+  fold 5 | ep  23 | loss 0.1122 | val auroc 0.842 auprc 0.403  *
+  fold 5 | ep  27 | loss 0.1076 | val auroc 0.860 auprc 0.313  *
+  fold 5 | ep  30 | loss 0.1089 | val auroc 0.754 auprc 0.205
+  fold 5 | early stop at epoch 37 (best epoch 27)
+fold 5 TEST | auroc 0.733 auprc 0.193 bal_acc 0.680 acc0 0.728 acc1 0.632 f1 0.316 ece 0.303 | thr 0.475
+
+mean ± std over folds [1, 2, 3, 4, 5]
+  auroc    0.742 ± 0.022
+  auprc    0.259 ± 0.049
+  bal_acc  0.663 ± 0.026
+  acc0     0.780 ± 0.080
+  acc1     0.545 ± 0.126
+  f1       0.333 ± 0.023
+  ece      0.341 ± 0.033
+
+artifacts -> results/lite_cbm_random
+[lite_cbm_no_supcon] PointNetLite/cbm | 0.21M params | 6 concepts | device=cpu
+  fold 1 | ep   1 | loss 0.1736 | val auroc 0.677 auprc 0.200  *
+  fold 1 | ep   4 | loss 0.1112 | val auroc 0.679 auprc 0.195  *
+  fold 1 | ep   6 | loss 0.0938 | val auroc 0.696 auprc 0.162  *
+  fold 1 | ep  10 | loss 0.0882 | val auroc 0.563 auprc 0.104
+  fold 1 | ep  20 | loss 0.0842 | val auroc 0.683 auprc 0.146
+  fold 1 | ep  24 | loss 0.0808 | val auroc 0.707 auprc 0.161  *
+  fold 1 | ep  26 | loss 0.0789 | val auroc 0.742 auprc 0.177  *
+  fold 1 | ep  30 | loss 0.0787 | val auroc 0.725 auprc 0.160
+  fold 1 | early stop at epoch 36 (best epoch 26)
+fold 1 TEST | auroc 0.751 auprc 0.215 bal_acc 0.723 acc0 0.516 acc1 0.930 f1 0.327 ece 0.347 | thr 0.471
+  fold 2 | ep   1 | loss 0.1516 | val auroc 0.727 auprc 0.352  *
+  fold 2 | ep  10 | loss 0.0875 | val auroc 0.498 auprc 0.139
+  fold 2 | ep  20 | loss 0.0871 | val auroc 0.557 auprc 0.197
+  fold 2 | ep  30 | loss 0.0854 | val auroc 0.680 auprc 0.389
+  fold 2 | early stop at epoch 30 (best epoch 1)
+fold 2 TEST | auroc 0.679 auprc 0.247 bal_acc 0.674 acc0 0.598 acc1 0.750 f1 0.326 ece 0.335 | thr 0.433
+  fold 3 | ep   1 | loss 0.1716 | val auroc 0.679 auprc 0.219  *
+  fold 3 | ep   3 | loss 0.1219 | val auroc 0.736 auprc 0.386  *
+  fold 3 | ep   9 | loss 0.0901 | val auroc 0.758 auprc 0.282  *
+  fold 3 | ep  10 | loss 0.0879 | val auroc 0.713 auprc 0.228
+  fold 3 | ep  15 | loss 0.0842 | val auroc 0.766 auprc 0.419  *
+  fold 3 | ep  17 | loss 0.0832 | val auroc 0.783 auprc 0.310  *
+  fold 3 | ep  20 | loss 0.0834 | val auroc 0.781 auprc 0.451
+  fold 3 | ep  26 | loss 0.0802 | val auroc 0.790 auprc 0.368  *
+  fold 3 | ep  30 | loss 0.0776 | val auroc 0.765 auprc 0.440
+  fold 3 | ep  35 | loss 0.0761 | val auroc 0.798 auprc 0.379  *
+  fold 3 | ep  36 | loss 0.0759 | val auroc 0.809 auprc 0.407  *
+  fold 3 | ep  37 | loss 0.0768 | val auroc 0.809 auprc 0.426  *
+  fold 3 | ep  38 | loss 0.0742 | val auroc 0.809 auprc 0.415  *
+  fold 3 | ep  40 | loss 0.0748 | val auroc 0.806 auprc 0.415
+fold 3 TEST | auroc 0.797 auprc 0.346 bal_acc 0.735 acc0 0.681 acc1 0.789 f1 0.343 ece 0.348 | thr 0.523
+  fold 4 | ep   1 | loss 0.1955 | val auroc 0.656 auprc 0.206  *
+  fold 4 | ep   6 | loss 0.0994 | val auroc 0.673 auprc 0.248  *
+  fold 4 | ep   7 | loss 0.0874 | val auroc 0.700 auprc 0.287  *
+  fold 4 | ep   8 | loss 0.0891 | val auroc 0.727 auprc 0.232  *
+  fold 4 | ep  10 | loss 0.0859 | val auroc 0.577 auprc 0.160
+  fold 4 | ep  12 | loss 0.0880 | val auroc 0.743 auprc 0.240  *
+  fold 4 | ep  14 | loss 0.0842 | val auroc 0.761 auprc 0.303  *
+  fold 4 | ep  16 | loss 0.0843 | val auroc 0.797 auprc 0.312  *
+  fold 4 | ep  20 | loss 0.0816 | val auroc 0.742 auprc 0.295
+  fold 4 | ep  26 | loss 0.0763 | val auroc 0.807 auprc 0.346  *
+  fold 4 | ep  30 | loss 0.0747 | val auroc 0.770 auprc 0.332
+  fold 4 | early stop at epoch 36 (best epoch 26)
+fold 4 TEST | auroc 0.813 auprc 0.284 bal_acc 0.775 acc0 0.591 acc1 0.958 f1 0.387 ece 0.357 | thr 0.515
+  fold 5 | ep   1 | loss 0.1686 | val auroc 0.744 auprc 0.313  *
+  fold 5 | ep   5 | loss 0.1035 | val auroc 0.778 auprc 0.354  *
+  fold 5 | ep  10 | loss 0.0901 | val auroc 0.629 auprc 0.144
+  fold 5 | ep  20 | loss 0.0821 | val auroc 0.705 auprc 0.175
+  fold 5 | ep  21 | loss 0.0825 | val auroc 0.833 auprc 0.394  *
+  fold 5 | ep  22 | loss 0.0819 | val auroc 0.836 auprc 0.432  *
+  fold 5 | ep  30 | loss 0.0797 | val auroc 0.813 auprc 0.253
+  fold 5 | ep  31 | loss 0.0782 | val auroc 0.844 auprc 0.291  *
+  fold 5 | ep  40 | loss 0.0776 | val auroc 0.871 auprc 0.427  *
+fold 5 TEST | auroc 0.776 auprc 0.226 bal_acc 0.757 acc0 0.698 acc1 0.816 f1 0.367 ece 0.338 | thr 0.533
+
+mean ± std over folds [1, 2, 3, 4, 5]
+  auroc    0.763 ± 0.047
+  auprc    0.264 ± 0.047
+  bal_acc  0.733 ± 0.034
+  acc0     0.617 ± 0.066
+  acc1     0.849 ± 0.081
+  f1       0.350 ± 0.024
+  ece      0.345 ± 0.008
+
+artifacts -> results/lite_cbm_no_supcon

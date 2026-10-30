@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import textwrap
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -37,6 +38,7 @@ RUNS = [
     ("PC-CBM (random concepts)", "results/lite_cbm_random", None),
     ("PC-CBM (no SupCon)", "results/lite_cbm_no_supcon", None),
 ]
+ACTIVE = 0.5  # concept counted as "firing" above this pooled score
 KEYS = ["auroc", "auprc", "bal_acc", "acc0", "acc1", "f1_macro", "ece"]
 
 
@@ -83,7 +85,7 @@ def plot_roc_pr(runs, out):
         axes[1].plot(rec, prec, color=color, lw=2, label=f"{name}  ({average_precision_score(df.label, df.prob):.3f})")
     axes[0].plot([0, 1], [0, 1], ls="--", color=MUTED, lw=1)
     axes[1].axhline(prevalence, ls="--", color=MUTED, lw=1)
-    axes[1].text(0.99, prevalence + 0.02, f"prevalence {prevalence:.2f}", ha="right", color=INK2, fontsize=8)
+    axes[1].text(0.01, prevalence + 0.02, f"prevalence = {prevalence:.2f} (chance AUPRC)", ha="left", color=INK2, fontsize=8)
     for ax, (xl, yl, t) in zip(
         axes,
         [
@@ -129,39 +131,31 @@ def concept_analysis(run_dir: str, out: str) -> dict:
         drops.append(base - roc_auc_score(df.label, pd.concat(probs).loc[df.index]))
     w = np.mean(weights, axis=0)
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.2), facecolor=SURFACE, gridspec_kw={"width_ratios": [1.35, 1]})
-    short = [n.replace("a ", "", 1)[:42] for n in names]
+    fig, axes = plt.subplots(1, 2, figsize=(13, 4.6), facecolor=SURFACE)
+    short = [textwrap.fill(n.replace("a ", "", 1), 34) for n in names]
     pos = np.arange(len(ccols))
-    for j, (lab, color, txt) in enumerate([(0, SERIES[0], "vessel"), (1, SERIES[1], "aneurysm")]):
-        data = [df.loc[df.label == lab, c].to_numpy() for c in ccols]
-        bp = axes[0].boxplot(
-            data,
-            positions=pos + (j - 0.5) * 0.36,
-            widths=0.3,
-            vert=False,
-            patch_artist=True,
-            showfliers=False,
-            medianprops={"color": INK, "lw": 1.2},
-        )
-        for patch in bp["boxes"]:
-            patch.set(facecolor=color, edgecolor=SURFACE, alpha=0.9)
-        for el in ("whiskers", "caps"):
-            for line in bp[el]:
-                line.set(color=MUTED)
-        axes[0].plot([], [], color=color, lw=6, label=txt)
-    axes[0].set_yticks(pos, short, color=INK, fontsize=8.5)
-    axes[0].set_xlabel("concept score  Ĉ  (top-k log-sum-exp of point attention)", color=INK2)
+    # Concept scores are strongly bimodal (off ≈ 0.39, on > 1), so show how often each concept fires.
+    for j, (lab, color, txt) in enumerate([(0, SERIES[0], "vessel segments"), (1, SERIES[1], "aneurysm segments")]):
+        frac = [(df.loc[df.label == lab, c] > ACTIVE).mean() for c in ccols]
+        axes[0].barh(pos + (0.5 - j) * 0.38, frac, height=0.36, color=color, edgecolor=SURFACE, linewidth=2, label=txt)
+        for y, f in zip(pos + (0.5 - j) * 0.38, frac):
+            axes[0].text(f + 0.01, y, f"{f:.0%}", va="center", fontsize=7.5, color=INK2)
+    axes[0].set_yticks(pos, short, color=INK, fontsize=8)
+    axes[0].set_xlim(0, 1.08)
+    axes[0].xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    axes[0].set_xlabel(f"share of held-out segments where the concept fires (Ĉ > {ACTIVE})", color=INK2)
     axes[0].set_title("Concept activation by class", color=INK, loc="left", fontsize=11)
     axes[0].legend(frameon=False, fontsize=8, loc="lower right")
 
     order = np.argsort(drops)
     axes[1].barh(pos, np.array(drops)[order], color=SERIES[0], height=0.6, edgecolor=SURFACE, linewidth=2)
-    axes[1].set_yticks(pos, [short[i] for i in order], color=INK, fontsize=8.5)
+    axes[1].axvline(0, color=MUTED, lw=0.8)
+    axes[1].set_yticks(pos, [short[i] for i in order], color=INK, fontsize=8)
     for y, i in enumerate(order):
-        axes[1].text(drops[i] + 0.002, y, f"{drops[i]:+.3f}  (w={w[i]:+.2f})", va="center", fontsize=8, color=INK2)
-    axes[1].set_xlabel("AUROC drop when the concept is ablated", color=INK2)
-    axes[1].set_title("Which concepts does the decision use?", color=INK, loc="left", fontsize=11)
-    axes[1].set_xlim(min(0, min(drops)) - 0.005, max(drops) * 1.6 + 0.01)
+        axes[1].text(max(drops[i], 0) + 0.001, y, f"{drops[i]:+.3f}   w̄ = {w[i]:+.2f}", va="center", fontsize=7.5, color=INK2)
+    axes[1].set_xlabel("pooled AUROC drop when the concept is replaced by a constant", color=INK2)
+    axes[1].set_title("Concept ablation", color=INK, loc="left", fontsize=11)
+    axes[1].set_xlim(min(0, min(drops)) - 0.003, max(drops) * 1.9 + 0.005)
     for ax in axes:
         style(ax)
     fig.tight_layout()
@@ -185,8 +179,13 @@ def main() -> None:
         f.write(table + "\n")
     print(table)
 
-    show = ["Geometric features + GBDT", "OpenShape zero-shot concept maps + LogReg", "PC-CBM (CLIP concepts)",
-            "Black-box head (no bottleneck)", "PC-CBM (random concepts)"]
+    show = [
+        "Geometric features + GBDT",
+        "OpenShape zero-shot concept maps + LogReg",
+        "PC-CBM (CLIP concepts)",
+        "Black-box head (no bottleneck)",
+        "PC-CBM (random concepts)",
+    ]
     curve_runs = [r for r in runs if r[0] in show]
     plot_roc_pr(curve_runs, os.path.join(args.out, "roc_pr.png"))
     if os.path.exists("results/lite_cbm_clip/best_model_fold_1.pth"):

@@ -1,0 +1,48 @@
+{
+  "num_points": 2048,
+  "threads": 2,
+  "cpu": "x86_64",
+  "torch": "2.15.0+cu132",
+  "results": [
+    {
+      "backbone": "PointNetLite",
+      "params_M": 0.327823,
+      "weights_MB": 1.2505455017089844,
+      "torch_b1_ms": 6.797109000217461,
+      "torch_b32_samples_per_s": 136.80604885884443,
+      "onnx_MB": 1.271864891052246,
+      "onnx_b1_ms": 6.466595999881974,
+      "onnx_max_abs_diff": 5.960464477539063e-08
+    },
+    {
+      "backbone": "PointNet",
+      "params_M": 3.182707,
+      "weights_MB": 12.141063690185547,
+      "torch_b1_ms": 21.988067000165756,
+      "torch_b32_samples_per_s": 21.310888336346988,
+      "onnx_MB": 12.15847396850586,
+      "onnx_b1_ms": 15.837988999919617,
+      "onnx_max_abs_diff": 1.1920928955078125e-07
+    },
+    {
+      "backbone": "DGCNN",
+      "params_M": 0.274319,
+      "weights_MB": 1.0464439392089844,
+      "torch_b1_ms": 145.67201499994553,
+      "torch_b32_samples_per_s": 3.7836399618769665,
+      "onnx_MB": 1.0950469970703125,
+      "onnx_b1_ms": 56.039041000076395,
+      "onnx_max_abs_diff": 1.1920928955078125e-07
+    },
+    {
+      "backbone": "PointNetPlusPlus",
+      "params_M": 1.025039,
+      "weights_MB": 3.9102134704589844,
+      "torch_b1_ms": 75.676600999941,
+      "torch_b32_samples_per_s": 9.527870035465405,
+      "onnx_MB": 10.611196517944336,
+      "onnx_b1_ms": 103.74695199971029,
+      "onnx_max_abs_diff": 0.0
+    }
+  ]
+}
