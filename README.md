@@ -162,10 +162,6 @@ with the prediction.
    by ±0.1 in early epochs, while the black-box head's is smooth. Early stopping
    with short patience killed CBM runs at epoch 2–4, so a warm-up period before
    early stopping is required for a fair comparison.
-5. **Read the old code before trusting old numbers.** The refactor found 10
-   issues ([`docs/DESIGN.md`](docs/DESIGN.md#3-bugs-fixed-while-refactoring)).
-   One of them, double-counted early-stopping patience, silently halved the
-   early-stopping patience.
 
 ## Quickstart
 
