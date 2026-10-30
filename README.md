@@ -1,6 +1,6 @@
 # PointCBM — Interpretable Intracranial-Aneurysm Detection from 3D Point Clouds
 
-[![CI](https://github.com/xiaoxurong/POINTCBM-767/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaoxurong/POINTCBM-767/actions/workflows/ci.yml)
+[![CI](https://github.com/xiaoxurong/interpretable-aneurysm-detection/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaoxurong/interpretable-aneurysm-detection/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -170,7 +170,7 @@ with the prediction.
 ## Quickstart
 
 ```bash
-git clone https://github.com/xiaoxurong/POINTCBM-767.git && cd POINTCBM-767
+git clone https://github.com/xiaoxurong/interpretable-aneurysm-detection.git && cd interpretable-aneurysm-detection
 pip install -e ".[dev,deploy]"      # CPU wheels are fine for everything below except the GPU table
 make test                           # 31 unit tests (a few seconds)
 make smoke                          # 1 fold × 1 epoch, end to end
