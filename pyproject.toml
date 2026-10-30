@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pointcbm"
+version = "1.0.0"
+description = "Interpretable intracranial-aneurysm classification from 3D point clouds with a concept bottleneck"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Xiaoxu Rong" }]
+license = { text = "MIT" }
+dependencies = [
+    "torch>=2.0",
+    "numpy>=1.23",
+    "pandas>=1.5",
+    "scikit-learn>=1.2",
+    "scipy>=1.9",
+    "pyyaml>=6.0",
+    "matplotlib>=3.6",
+    "joblib>=1.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+deploy = ["onnx>=1.14", "onnxruntime>=1.16"]
+tracking = ["wandb>=0.15"]
+clip = ["clip @ git+https://github.com/openai/CLIP.git"]
+
+[tool.setuptools.packages.find]
+include = ["pointcbm*"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py39"
+extend-exclude = ["scripts/logit_lens.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "E731", "B905", "UP007", "UP045", "B023"]  # B023: lambdas are called immediately
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

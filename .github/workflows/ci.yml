@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Skip the ~490 MB of OpenShape heatmaps; tests only need code + IntrA splits.
+          sparse-checkout: |
+            pointcbm
+            scripts
+            tests
+            configs
+            data/processed_IntrA_6d
+            data/metadata
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install (CPU-only PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -e ".[dev,deploy]"
+      - name: Lint
+        run: ruff check pointcbm scripts tests
+      - name: Unit tests
+        run: pytest
+      - name: End-to-end smoke test (1 fold, 1 epoch)
+        run: |
+          python scripts/train.py --config configs/cpu_ablation.yaml --folds 1 \
+            --set training.num_epochs=1 experiment.name=ci experiment.save_dir=/tmp/ci
+          python scripts/evaluate.py --checkpoint_dir /tmp/ci/ci

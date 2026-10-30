@@ -1,0 +1,43 @@
+# Compact-backbone ablation suite that trains on a laptop CPU (~20-25 min per config,
+# 5 folds). Used for the controlled comparisons in docs/RESULTS.md; vary one
+# factor at a time with --set, e.g.
+#   python scripts/train.py --config configs/cpu_ablation.yaml --set model.head=blackbox experiment.name=lite_blackbox
+experiment:
+  name: lite_cbm_clip
+  save_dir: results/
+  seed: 42
+
+data:
+  data_dir: data/processed_IntrA_6d/points/
+  csv_dir: data/processed_IntrA_6d/
+  concept_embeddings: data/metadata/concept_embeds.pt   # CLIP ViT-L/14, 6 concepts
+  num_points: 512
+
+model:
+  backbone: PointNetLite
+  head: cbm            # cbm | blackbox
+  d_f: 128
+  d_hidden: 128
+  in_channel: 6
+  num_classes: 2
+  pooling: topk_lse
+
+training:
+  num_epochs: 40
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 10
+  warmup_epochs: 20     # the bottleneck's val AUROC is noisy early on; don't early-stop before it settles
+  monitor: auroc
+  scheduler: cosine
+  threshold_method: youden
+
+loss_weights:
+  alpha: 0.5
+  gamma: 2.0
+  lambda_sparse: 0.01
+  lambda_ortho: 0.01
+  lambda_supcon: 0.01
+  temperature: 0.1
+  lambda_l1: 0.0001

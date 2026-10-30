@@ -1,11 +1,13 @@
-import torch
-import clip
-import json
 import argparse
+import json
 import os
 
+import clip
+import torch
+
+
 def load_concepts_from_json(json_path):
-    with open(json_path, 'r') as f:
+    with open(json_path) as f:
         data = json.load(f)
 
     # Check for the new unified concept bank

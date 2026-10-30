@@ -1,33 +1,51 @@
+# Full-size PC-CBM training (GPU recommended). Reproduces the main results table:
+#   python scripts/train.py --config configs/train_intra.yaml --set model.backbone=PointNetPlusPlus
+# See experiments/run_gpu_table.sh for all six backbone x loss combinations.
 experiment:
-  name: "IntrA_CCAM_PointNet_6d_input_alpha0.6_no_contrastive_loss"
-  task: "classification" # or "segmentation"
-  save_dir: "checkpoints/"
+  name: IntrA_PCCBM_PointNetPlusPlus_focal_supcon
+  task: classification
+  save_dir: checkpoints/
+  seed: 42
 
 data:
-  dataset_name: "IntrA"
-  data_dir: "data/processed_IntrA_6d/points/"
-  csv_dir: "data/processed_IntrA_6d/"
-  concept_embeddings: "data/metadata/concept_embeds.pt"
+  data_dir: data/processed_IntrA_6d/points/
+  csv_dir: data/processed_IntrA_6d/          # contains fold_{1..5}/{train,val,test}_labels.csv
+  concept_embeddings: data/metadata/concept_embeds.pt   # 6 concepts, CLIP ViT-L/14 (d_t = 768)
+  num_points: null                            # use all 2048 points
 
 model:
-  backbone: "OfficialPointNet" # or "VanillaPointNet"
+  backbone: PointNetPlusPlus                  # PointNet | PointNetPlusPlus | DGCNN | PointNetLite
+  head: cbm                                   # cbm | blackbox (ablation)
   d_f: 128
-  in_channel: 6
   d_hidden: 256
+  in_channel: 6                               # xyz + normals
   num_classes: 2
-  k: 20
+  k: 20                                       # DGCNN neighbours
+  pooling: topk_lse                           # topk_lse | lse | max | mean
 
 training:
   num_epochs: 100
   batch_size: 128
   learning_rate: 0.001
   weight_decay: 0.0001
+  patience: 15
+  warmup_epochs: 30
+  monitor: auroc
+  scheduler: plateau
+  num_workers: 4
+  amp: true
+  threshold_method: youden                    # operating point picked on the val split
 
 loss_weights:
   alpha: 0.5
   gamma: 2.0
-  lambda_align: 0   
+  lambda_align: 0.0
   lambda_sparse: 0.01
   lambda_ortho: 0.01
-  lambda_supcon: 0.01
+  lambda_supcon: 0.01                         # set 0.0 for the focal-only rows
   temperature: 0.1
+  lambda_l1: 0.0001
+
+logging:
+  wandb: false                                # true -> per-fold runs in project IntrA-CBM-CV
+  project: IntrA-CBM-CV

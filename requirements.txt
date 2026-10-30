@@ -1,0 +1,14 @@
+# Core (also declared in pyproject.toml — `pip install -e .` is preferred)
+torch>=2.0
+numpy>=1.23
+pandas>=1.5
+scikit-learn>=1.2
+scipy>=1.9
+pyyaml>=6.0
+matplotlib>=3.6
+joblib>=1.2
+# Optional
+onnx>=1.14            # scripts/benchmark_inference.py
+onnxruntime>=1.16
+wandb>=0.15           # logging.wandb: true
+# git+https://github.com/openai/CLIP.git   # scripts/concept_embeddings.py

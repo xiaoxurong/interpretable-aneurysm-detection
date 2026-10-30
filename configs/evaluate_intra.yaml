@@ -1,20 +1,17 @@
-experiment:
-  name: "IntrA_CCAM_PPP_Focal_Loss_batch128_Sparse0.01_Ortho0.01_EVAL"
-  task: "classification" # or "segmentation"
-
+# Evaluate saved fold checkpoints. New checkpoints embed their own config, so
+#   python scripts/evaluate.py --checkpoint_dir checkpoints/<run_name>
+# is usually enough; this file is for checkpoints produced by the original code.
 data:
-  dataset_name: "IntrA"
-  data_dir: "data/processed_IntrA_6d/points/"
-  csv_dir: "data/processed_IntrA_6d/" # Pointing directly to the test split
-  concept_embeddings: "data/metadata/concept_embeds.pt"
+  data_dir: data/processed_IntrA_6d/points/
+  csv_dir: data/processed_IntrA_6d/
+  concept_embeddings: data/metadata/concept_embeds.pt
 
 model:
-  backbone: "OfficialPointNet" # Must match what the checkpoint was trained with
+  backbone: OfficialPointNet     # must match the checkpoint
   d_f: 128
   d_hidden: 256
   num_classes: 2
   in_channel: 6
 
 evaluation:
-  batch_size: 256 # Can safely be double your training batch size without OOM errors
-  checkpoint_dir: "checkpoints/checkpoints_IntrA_PN_contrast" # Path to the specific weights you want to evaluate
+  checkpoint_dir: checkpoints/checkpoints_IntrA_PN_contrast

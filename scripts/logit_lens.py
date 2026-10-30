@@ -43,7 +43,7 @@ from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from CCAM.dataset import IntrAClassificationDataset
+from pointcbm.data import IntrAClassificationDataset
 
 
 # ─────────────────────────────────────────────────────────────────────────────

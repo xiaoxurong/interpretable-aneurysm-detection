@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Experiment artifacts (keep summaries, not weights)
+checkpoints/
+wandb/
+tti_results/
+visualizations/
+*.pth
+*.onnx
+!results/lite_cbm_clip/*.pth

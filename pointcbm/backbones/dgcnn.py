@@ -16,12 +16,11 @@ Reference:
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Core graph utilities
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def knn(x: torch.Tensor, k: int) -> torch.Tensor:
     """
@@ -36,15 +35,14 @@ def knn(x: torch.Tensor, k: int) -> torch.Tensor:
     """
     # Pairwise squared distances via the identity
     # ||a - b||^2 = ||a||^2 - 2 <a,b> + ||b||^2
-    inner = -2.0 * torch.matmul(x.transpose(2, 1), x)   # (B, N, N)
-    xx    = torch.sum(x ** 2, dim=1, keepdim=True)       # (B, 1, N)
-    dist  = -xx - inner - xx.transpose(2, 1)             # (B, N, N) — negated so topk = nearest
-    idx   = dist.topk(k=k, dim=-1)[1]                   # (B, N, k)
+    inner = -2.0 * torch.matmul(x.transpose(2, 1), x)  # (B, N, N)
+    xx = torch.sum(x**2, dim=1, keepdim=True)  # (B, 1, N)
+    dist = -xx - inner - xx.transpose(2, 1)  # (B, N, N) — negated so topk = nearest
+    idx = dist.topk(k=k, dim=-1)[1]  # (B, N, k)
     return idx
 
 
-def get_graph_feature(x: torch.Tensor, k: int = 20,
-                      idx: torch.Tensor = None) -> torch.Tensor:
+def get_graph_feature(x: torch.Tensor, k: int = 20, idx: torch.Tensor = None) -> torch.Tensor:
     """
     Construct edge features for EdgeConv.
 
@@ -60,28 +58,29 @@ def get_graph_feature(x: torch.Tensor, k: int = 20,
         edge_feat : (B, 2C, N, k)
     """
     B, C, N = x.shape
-    device  = x.device
+    device = x.device
 
     if idx is None:
-        idx = knn(x, k=k)                                  # (B, N, k)
+        idx = knn(x, k=k)  # (B, N, k)
 
     # Flatten indices for batch-aware gathering
     idx_base = torch.arange(0, B, device=device).view(-1, 1, 1) * N
-    idx_flat = (idx + idx_base).view(-1)                   # (B*N*k,)
+    idx_flat = (idx + idx_base).view(-1)  # (B*N*k,)
 
-    x_t       = x.transpose(2, 1).contiguous()            # (B, N, C)
-    neighbors = x_t.view(B * N, C)[idx_flat]              # (B*N*k, C)
-    neighbors = neighbors.view(B, N, k, C)                 # (B, N, k, C)
+    x_t = x.transpose(2, 1).contiguous()  # (B, N, C)
+    neighbors = x_t.view(B * N, C)[idx_flat]  # (B*N*k, C)
+    neighbors = neighbors.view(B, N, k, C)  # (B, N, k, C)
 
     center = x_t.view(B, N, 1, C).expand(-1, -1, k, -1)  # (B, N, k, C)
 
-    edge_feat = torch.cat([center, neighbors - center], dim=3)   # (B, N, k, 2C)
-    return edge_feat.permute(0, 3, 1, 2).contiguous()            # (B, 2C, N, k)
+    edge_feat = torch.cat([center, neighbors - center], dim=3)  # (B, N, k, 2C)
+    return edge_feat.permute(0, 3, 1, 2).contiguous()  # (B, 2C, N, k)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # EdgeConv block
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class EdgeConv(nn.Module):
     """
@@ -110,14 +109,15 @@ class EdgeConv(nn.Module):
         Returns:
             (B, C_out, N)
         """
-        feat = get_graph_feature(x, k=self.k)   # (B, 2C_in, N, k)
-        feat = self.conv(feat)                   # (B, C_out, N, k)
-        return feat.max(dim=-1)[0]              # (B, C_out, N)
+        feat = get_graph_feature(x, k=self.k)  # (B, 2C_in, N, k)
+        feat = self.conv(feat)  # (B, C_out, N, k)
+        return feat.max(dim=-1)[0]  # (B, C_out, N)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # DGCNN backbone
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class DGCNN(nn.Module):
     """
@@ -138,16 +138,14 @@ class DGCNN(nn.Module):
                       Reduce to 10 if GPU memory is tight.
     """
 
-    def __init__(self, out_channel: int = 128,
-                 in_channel: int = 6,
-                 k: int = 20):
+    def __init__(self, out_channel: int = 128, in_channel: int = 6, k: int = 20):
         super().__init__()
-        self.k          = k
+        self.k = k
         self.in_channel = in_channel
 
         self.ec1 = EdgeConv(in_channel, 64, k=k)
-        self.ec2 = EdgeConv(64,         64, k=k)
-        self.ec3 = EdgeConv(64,         64, k=k)
+        self.ec2 = EdgeConv(64, 64, k=k)
+        self.ec3 = EdgeConv(64, 64, k=k)
 
         # Fuse multi-scale edge features → per-point output
         self.fusion = nn.Sequential(
@@ -164,11 +162,11 @@ class DGCNN(nn.Module):
         Returns:
             (B, N, out_channel)     — per-point features for CCAM
         """
-        x1 = self.ec1(x)                              # (B, 64, N)
-        x2 = self.ec2(x1)                             # (B, 64, N)
-        x3 = self.ec3(x2)                             # (B, 64, N)
+        x1 = self.ec1(x)  # (B, 64, N)
+        x2 = self.ec2(x1)  # (B, 64, N)
+        x3 = self.ec3(x2)  # (B, 64, N)
 
-        x_cat = torch.cat([x1, x2, x3], dim=1)       # (B, 192, N)
-        out   = self.fusion(x_cat)                    # (B, out_channel, N)
+        x_cat = torch.cat([x1, x2, x3], dim=1)  # (B, 192, N)
+        out = self.fusion(x_cat)  # (B, out_channel, N)
 
-        return out.transpose(1, 2).contiguous()        # (B, N, out_channel)
+        return out.transpose(1, 2).contiguous()  # (B, N, out_channel)
